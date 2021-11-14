@@ -1,0 +1,23 @@
+<!--pages/index/complete/index.wxml-->
+<view class="margin-lr-sm red">
+  <form catchsubmit="ResetUserInfo">
+    <view class="cu-form-group margin-top ">
+      <view class="title text-bold">选择洗浴楼栋</view>
+      <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+        range="{{multiArray}}">
+        <view class="picker">
+          {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group ">
+      <view class="title text-bold">手 机</view>
+      <input placeholder="请输入您的手机" value="{{User_Phone}}" bindinput="User_Phone_Input"></input>
+    </view>
+    <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit">
+      <text class="cuIcon-submit iconfont-spin"></text>
+      修 改
+    </button>
+  </form>
+  <text>\n</text><text>\n</text><text>\n</text>
+</view>

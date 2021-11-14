@@ -1,0 +1,1 @@
+"F:\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-5guafazuefab052a --n quickstartFunctions --r --project "Z:\StarBathing" --report

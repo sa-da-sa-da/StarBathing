@@ -1,0 +1,73 @@
+<!--pages/user/index/index.wxml-->
+<view class="UCenter-bg">
+  <block wx:if="{{hasUserInfo}}">
+    <button class="cu-btn round bg-green shadow margin-top" type="primary" bindtap="getUserProfile">
+      轻触登录
+    </button>
+  </block>
+  <block wx:else>
+    <image class="cu-avatar round xl margin-bottom" src="{{User_AvatarUrl}}" mode="cover">
+    </image>
+    <view class="text-xl text-center text-bold">{{User_NickName}}</view>
+  </block>
+</view>
+<text>\n</text>
+
+<text>\n</text>
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{TabCur==1?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
+    当前预约队伍
+  </view>
+  <view class="cu-item {{TabCur==2?'text-blue cur':''}}" bindtap="tabSelect" data-id="2">
+    历史预约记录
+  </view>
+</scroll-view>
+<text>\n</text>
+<view wx:if="{{TabCur==1}}">
+  <view style="margin-left:30rpx">
+	<view wx:for="{{Rooming}}" wx:for-item="item" wx:for-index="idx">
+		<view class="time1">{{item.time}}</view>
+		<view class="box1">
+			<image src="https://moodle-img-video.oss-cn-zhangjiakou.aliyuncs.com/img/%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.jpg"
+				class="image1"></image>
+			<view class="name">
+				<view class="text1">{{item.storey}} _ {{item.floor}} _ {{item.room}} </view>
+				<view class="text2">{{item.note}}</view>
+			</view>
+			<image src="../images/close.png" class="image2" data-index="{{idx}}" bindtap="cancel"></image>
+		</view>
+	</view>
+</view>
+  
+</view>
+
+<view wx:if="{{TabCur==2}}" class="text-center">
+  <view class="cu-list card-menu margin-bottom-xl  bg-white radius">
+    <view class="cu-timeline">
+      <view class="cu-time">昨天</view>
+      <view class="cu-item cur cuIcon-noticefill">
+        <view class="content bg-green shadow-blur">
+          <text>22:22</text> 【广州市】快件已到达地球
+        </view>
+      </view>
+      <view class="cu-item text-red cuIcon-attentionforbidfill">
+        <view class="content bg-red shadow-blur">
+          这是第一次，我家的铲屎官走了这么久。久到足足有三天！！
+        </view>
+      </view>
+      <view class="cu-item text-grey cuIcon-evaluate_fill">
+        <view class="content bg-grey shadow-blur">
+          这是第一次，我家的铲屎官走了这么久。
+        </view>
+      </view>
+      <view class="cu-item text-blue">
+        <view class="bg-blue content">
+          <text>20:00</text> 【月球】快件已到达月球，准备发往地球
+        </view>
+        <view class="bg-cyan content">
+          <text>10:00</text> 【银河系】快件已到达银河系，准备发往月球
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

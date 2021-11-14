@@ -1,0 +1,66 @@
+<!--pages/index.wxml-->
+<view class="cu-form-group margin-top">
+	<picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+		range="{{multiArray}}">
+		<view class="flex picker">
+			{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}} {{multiArray[2][multiIndex[2]]}}
+		</view>
+	</picker>
+</view>
+
+<view class="solid-bottom text-xl padding">
+	<text class="text-black text-bold">预约</text>
+</view>
+
+<text>\n</text>
+<block wx:if="{{ReserveState===true}}">
+	<view bindtap="btnReserve" class="cu-btn bg-blue lines-red round lg shadow">
+		一键预约
+	</view>
+	<text>\n</text>
+</block>
+<block wx:else="{{ReserveState==false}}">
+	<view class="cu-list card-menu margin-bottom-xl  bg-white radius">
+    <view class="padding">
+      <view class="cu-avatar round lg margin-left" wx:for="{{8}}" wx:key
+        style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
+      </view>
+    </view>
+  </view>
+	<view class="flex align-center justify-center ">
+		<text>
+			已等待时间：{{seconded}} 秒\n
+			前面人数： {{10}}人\n
+			预计还需等待时间：{{second }} 秒\n
+		</text>
+	</view>
+	<view class="cu-btn cuIcon-refresh bg-blue lines-red round lg shadow " bindtap="btnReserveCancel">取消</view>
+</block>
+<view class="solid-bottom text-xl padding">
+	<text class="text-black text-bold">可预约浴室</text>
+</view>
+<view class="page-section">
+	<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%;">
+		<view class="scroll-view-item_H" wx:for="{{roomList}}" wx:for-item="item" wx:for-index="idx">
+			<view class="box2" bindtap="roomOpen" data-index="{{idx}}">
+				<view class="text-xl text-bold" style="margin-top: 30rpx;">{{item.storey}}</view>
+				<view class="text3">{{item.floor}}_{{item.room}}</view>
+				<view class="booktime">
+					<view class="text4">最近被预约：</view>
+					<view class="text5">{{item.time}}</view>
+				</view>
+				<view class="text6">预计结束时间{{item.time+30}}</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+
+<!--
+<wxs module="m1">
+	function formatTime(date) {
+		var d = getHours(date)
+		return d.getHours() + d.getMinutes()
+	}
+	module.exports.format = format
+</wxs>
+-->
